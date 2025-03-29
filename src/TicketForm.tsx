@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { TicketActions } from "./types";
+import SubmitButton from "./SubmitButton";
+import TextArea from "./TextArea";
+import TextField from "./TextField";
 import { Dispatch } from "./ticketsReducer";
 
 interface TicketFormProps {
@@ -19,25 +21,13 @@ export default function TicketForm({ dispatch }: TicketFormProps) {
 
   return (
     <form className="ticket-form" onSubmit={onSubmit}>
-      <div>
-        <label htmlFor="ticket-title">Title</label>
-        <input
-          id="ticket-title"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="Description">Description</label>
-        <input
-          id="Description"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-      <button type="submit">Add Ticket</button>
+      <TextField label="Title" name="ticket-title" placeholder="Title" />
+      <TextArea
+        label="Description"
+        name="ticket-description"
+        placeholder="Description"
+      />
+      <SubmitButton label="Add Ticket" />
     </form>
   );
 }
