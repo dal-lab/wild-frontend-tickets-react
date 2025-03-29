@@ -1,20 +1,18 @@
 import { useState } from "react";
 import { TicketActions } from "./types";
+import { Dispatch } from "./ticketsReducer";
 
-export default function TicketForm({
-  ticketActions,
-}: {
-  ticketActions: TicketActions;
-}) {
+interface TicketFormProps {
+  dispatch: Dispatch;
+}
+
+export default function TicketForm({ dispatch }: TicketFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    ticketActions.addTicket({
-      title,
-      description,
-    });
+    dispatch({ type: "addTicket", title, description });
     setTitle("");
     setDescription("");
   };

@@ -1,17 +1,16 @@
-import { useState } from "react";
-import { Ticket, TicketActions } from "./types";
-import TicketList from "./TicketList";
+import { useReducer } from "react";
 import TicketForm from "./TicketForm";
-import { useTickets } from "./hooks/useTickets";
+import TicketList from "./TicketList";
+import { ticketsReducer } from "./ticketsReducer";
 
 function App() {
-  const { tickets, ticketActions } = useTickets();
+  const [tickets, dispatch] = useReducer(ticketsReducer, []);
 
   return (
     <div className="container">
       <h1>Ticket Management</h1>
-      <TicketForm ticketActions={ticketActions} />
-      <TicketList tickets={tickets} ticketActions={ticketActions} />
+      <TicketForm dispatch={dispatch} />
+      <TicketList tickets={tickets} dispatch={dispatch} />
     </div>
   );
 }

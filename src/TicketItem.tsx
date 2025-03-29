@@ -1,15 +1,15 @@
 import { memo } from "react";
 import { Ticket, TicketActions } from "./types";
+import { Dispatch } from "./ticketsReducer";
 
-function TicketItem({
-  ticket,
-  ticketActions,
-}: {
+interface TicketItemProps {
   ticket: Ticket;
-  ticketActions: TicketActions;
-}) {
+  dispatch: Dispatch;
+}
+
+function TicketItem({ ticket, dispatch }: TicketItemProps) {
   const handleClick = () => {
-    ticketActions.toggleTicketStatus(ticket.id);
+    dispatch({ type: "toggleTicketStatus", id: ticket.id });
   };
 
   console.log("Render TicketItem", ticket.id);

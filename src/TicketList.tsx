@@ -1,21 +1,17 @@
-import { Ticket, TicketActions } from "./types";
 import { TicketItemMemo } from "./TicketItem";
+import { Dispatch } from "./ticketsReducer";
+import { Ticket } from "./types";
 
-export default function TicketList({
-  tickets,
-  ticketActions,
-}: {
+interface TicketListProps {
   tickets: Ticket[];
-  ticketActions: TicketActions;
-}) {
+  dispatch: Dispatch;
+}
+
+export default function TicketList({ tickets, dispatch }: TicketListProps) {
   return (
     <ul className="ticket-list">
       {tickets.map((ticket) => (
-        <TicketItemMemo
-          key={ticket.id}
-          ticket={ticket}
-          ticketActions={ticketActions}
-        />
+        <TicketItemMemo key={ticket.id} ticket={ticket} dispatch={dispatch} />
       ))}
     </ul>
   );
