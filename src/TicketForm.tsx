@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SubmitButton from "./SubmitButton";
 import TextArea from "./TextArea";
 import TextField from "./TextField";
@@ -9,14 +8,14 @@ interface TicketFormProps {
 }
 
 export default function TicketForm({ dispatch }: TicketFormProps) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const title = formData.get("ticket-title") as string;
+    const description = formData.get("ticket-description") as string;
     dispatch({ type: "addTicket", title, description });
-    setTitle("");
-    setDescription("");
+    form.reset();
   };
 
   return (
