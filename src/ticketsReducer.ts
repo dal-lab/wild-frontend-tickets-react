@@ -1,4 +1,4 @@
-import { Ticket } from "./types";
+import { AddCommentAction, Ticket } from "./types";
 
 interface AddTicketAction {
   type: "addTicket";
@@ -9,12 +9,6 @@ interface AddTicketAction {
 interface ToggleTicketStatusAction {
   type: "toggleTicketStatus";
   id: number;
-}
-
-interface AddCommentAction {
-  type: "addComment";
-  ticketId: number;
-  content: string;
 }
 
 type TicketAction =

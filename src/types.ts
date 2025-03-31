@@ -22,3 +22,9 @@ export interface TicketActions {
 
   toggleTicketStatus(id: number): void;
 }
+
+export interface AddCommentAction {
+  type: "addComment";
+  ticketId: number;
+  content: string;
+}
