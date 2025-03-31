@@ -12,6 +12,7 @@ describe("TicketItem", () => {
     title: "TITLE",
     description: "DESCRIPTION",
     status: "open",
+    comments: [],
   };
 
   const dispatch = vi.fn();

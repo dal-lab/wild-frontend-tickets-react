@@ -3,6 +3,12 @@ export interface Ticket {
   title: string;
   description: string;
   status: "open" | "closed";
+  comments: Comment[];
+}
+
+export interface Comment {
+  id: number;
+  content: string;
 }
 
 export interface TicketActions {
