@@ -12,7 +12,12 @@ describe("TicketItem", () => {
     title: "TITLE",
     description: "DESCRIPTION",
     status: "open",
-    comments: [],
+    comments: [
+      {
+        id: 1,
+        content: "COMMENT",
+      },
+    ],
   };
 
   const dispatch = vi.fn();
@@ -30,6 +35,11 @@ describe("TicketItem", () => {
 
     screen.getByText(/TITLE/);
     screen.getByText(/DESCRIPTION/);
+  });
+
+  it("renders comments", () => {
+    renderTicketItem();
+    screen.getByText(/COMMENT/);
   });
 
   context("when user clicks toggle button", () => {

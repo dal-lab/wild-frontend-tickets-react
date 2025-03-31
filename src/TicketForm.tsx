@@ -7,7 +7,7 @@ interface TicketFormProps {
   dispatch: Dispatch;
 }
 
-export default function TicketForm({ dispatch }: TicketFormProps) {
+function TicketForm({ dispatch }: TicketFormProps) {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -30,3 +30,5 @@ export default function TicketForm({ dispatch }: TicketFormProps) {
     </form>
   );
 }
+
+export default TicketForm;

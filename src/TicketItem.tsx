@@ -1,6 +1,8 @@
 import { memo } from "react";
-import { Ticket, TicketActions } from "./types";
+import { Ticket } from "./types";
 import { Dispatch } from "./ticketsReducer";
+import CommentList from "./CommentList";
+import CommentForm from "./CommentForm";
 
 interface TicketItemProps {
   ticket: Ticket;
@@ -8,7 +10,7 @@ interface TicketItemProps {
 }
 
 function TicketItem({ ticket, dispatch }: TicketItemProps) {
-  const handleClick = () => {
+  const handleToggleTicketStatusClick = () => {
     dispatch({ type: "toggleTicketStatus", id: ticket.id });
   };
 
@@ -18,9 +20,11 @@ function TicketItem({ ticket, dispatch }: TicketItemProps) {
     <li>
       <div className="title">{ticket.title}</div>
       <div className="description">{ticket.description}</div>
-      <button className="status" onClick={handleClick}>
+      <button className="status" onClick={handleToggleTicketStatusClick}>
         {ticket.status === "open" ? "Open" : "Closed"}
       </button>
+      <CommentForm ticketId={ticket.id} dispatch={dispatch} />
+      <CommentList comments={ticket.comments} />
     </li>
   );
 }
