@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import TicketForm from "./TicketForm";
-import TicketList from "./TicketList";
 import { ticketsReducer } from "./ticketsReducer";
+import TicketListMemo from "./TicketList";
 
 function App() {
   const [tickets, dispatch] = useReducer(ticketsReducer, []);
@@ -10,7 +10,7 @@ function App() {
     <div className="container">
       <h1>Ticket Management</h1>
       <TicketForm dispatch={dispatch} />
-      <TicketList tickets={tickets} dispatch={dispatch} />
+      <TicketListMemo tickets={tickets} dispatch={dispatch} />
     </div>
   );
 }

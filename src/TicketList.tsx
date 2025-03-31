@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { TicketItemMemo } from "./TicketItem";
 import { Dispatch } from "./ticketsReducer";
 import { Ticket } from "./types";
@@ -7,7 +8,7 @@ interface TicketListProps {
   dispatch: Dispatch;
 }
 
-export default function TicketList({ tickets, dispatch }: TicketListProps) {
+function TicketList({ tickets, dispatch }: TicketListProps) {
   return (
     <ul className="ticket-list">
       {tickets.map((ticket) => (
@@ -16,3 +17,7 @@ export default function TicketList({ tickets, dispatch }: TicketListProps) {
     </ul>
   );
 }
+
+const TicketListMemo = memo(TicketList);
+
+export default TicketListMemo;
