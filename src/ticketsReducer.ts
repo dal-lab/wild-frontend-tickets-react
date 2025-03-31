@@ -50,13 +50,21 @@ export function ticketsReducer(
     }
 
     case "addComment": {
-      const id =
-        Math.max(
-          ...tickets.flatMap((ticket) =>
-            ticket.comments.map((comment) => comment.id)
-          ),
-          0
-        ) + 1;
+      const targetTicket = tickets.find(
+        (ticket) => ticket.id === action.ticketId
+      );
+      if (!targetTicket) {
+        console.error("Ticket not found");
+        return tickets;
+      }
+      const commentIds = tickets.reduce(
+        (acc, ticket) => [
+          ...acc,
+          ...ticket.comments.map((comment) => comment.id),
+        ],
+        [] as number[]
+      );
+      const id = Math.max(...commentIds, 0) + 1;
       return tickets.map((ticket) =>
         ticket.id === action.ticketId
           ? {
